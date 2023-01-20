@@ -1,2 +1,3 @@
-# robust-counterfactuals
-Generate robust counterfactual explanations for machine learning models
+# Robust Counterfactuals Explanations
+RCE is a Python package for calculating robust Counterfactual explanations (CE) for data-driven classification models. CEs play a crucial role in detecting biases and improving the explainability of these models, but most known methods can only provide a single CE which may not be practical for real-world use. Our package uses algorithmic ideas from robust optimization to provide a whole region of optimal CEs, so that the user can select the most reasonable one. Our method is proven to converge for popular ML methods such as logistic regression, decision trees, random forests, and neural networks.
+
