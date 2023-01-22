@@ -8,7 +8,7 @@ from pyomo import environ
 from pyomo.environ import *
 
 # utils
-import utils as cl
+import rce
 
 
 def write_tables(save_path, X_train, y_train, clf, clf_type, task_type):
@@ -18,7 +18,7 @@ def write_tables(save_path, X_train, y_train, clf, clf_type, task_type):
     """
     if not os.path.exists(save_path + '/' + clf_type):
         os.makedirs(save_path + '/' + clf_type)
-    constraintL = cl.ConstraintLearning(X_train, y_train, clf, clf_type)
+    constraintL = rce.ConstraintLearning(X_train, y_train, clf, clf_type)
     constraint_add = constraintL.constraint_extrapolation(task_type)
     constraint_add.to_csv(save_path + '/%s/model.csv' % (clf_type), index=False)
     print(f'{clf_type} tables saved.')
