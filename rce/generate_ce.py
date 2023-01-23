@@ -660,7 +660,7 @@ def adversarial_algorithm(model, outcome, clf_type, save_path, u, mfile, F, rho,
         print('Status adversarial problem:', status_adv)
         if status_adv:
             if value(adv_model.OBJ) <= eps:
-                print('Stopping because the ADV obj value is < eps')
+                print(f'Stopping because the ADV obj value ({value(adv_model.OBJ)}) is < eps ({eps})')
                 break
 
             for temp_sol_adv in set_sol_adv:
