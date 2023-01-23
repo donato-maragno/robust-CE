@@ -631,7 +631,7 @@ def adversarial_algorithm(model, outcome, clf_type, save_path, u, mfile, F, rho,
 
     S = [{j: 0 for j in F}]
     iterations = 0
-    eps = 0.0001
+    eps = 0.00001
     iteration_condition = True
     comp_time = time.time()
     time_find_maxrad_list = []
