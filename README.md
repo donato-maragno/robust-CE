@@ -10,6 +10,7 @@ You can install the RCE package locally by cloning the repository and running ``
 RCE can generate robust counterfactual for logistic regression, decision trees, random forests, gradient boosting machines, and nerual networks with ReLU activation functions. The predictive models must be trained using the ```sklearn``` library.
 
 ```python
+import rce
 # train the classifier
 clf_type = 'cart'  # supported clf types: ['cart', 'linear', 'rf', 'gbm', 'mlp']
 clf = DecisionTreeClassifier(max_depth=5).fit(X_train, y_train)
