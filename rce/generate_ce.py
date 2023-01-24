@@ -588,7 +588,7 @@ def adv_problem(model, outcome, clf_type, mfile, F, x_, lb, ub, rho, unc_type):
     return model, solution, subopt_solutions, status
 
 
-def master_problem(model, u, outcome, clf_type, mfile, F, rho, unc_type, lb, ub, S):
+def master_problem(model, u, outcome, clf_type, mfile, F, rho, unc_type, lb, ub, S, time_limit = 1000):
     """
         This function defines and solves the master problem.
     """
@@ -608,7 +608,10 @@ def master_problem(model, u, outcome, clf_type, mfile, F, rho, unc_type, lb, ub,
     print('Optimizing the master problem...')
     start_time_master = time.time()
     opt = SolverFactory('gurobi')
-    opt.solve(master_model)
+    try: opt.solve(master_model, timelimit=time_limit)
+    except: 
+        return None, None
+#     opt.solve(master_model)
     end_time_master = time.time()
     sol_master = pd.DataFrame([[value(master_model.x[i]) for i in F]], columns=F)
     print('solution master', [value(master_model.x[i]) for i in F], 'generated in ',
@@ -641,8 +644,18 @@ def adversarial_algorithm(model, outcome, clf_type, save_path, u, mfile, F, rho,
         if time.time() - comp_time > time_limit:
             break
         print(f'\n\n------------------------ Iteration: {iterations} ------------------------')
+        
+#         try: master_model, sol_master = master_problem(model.clone(), u, outcome, clf_type, mfile, F, rho, unc_type, lb,
+#                                                        ub, S, time_limit = time_limit)
+#         except: 
+#             break
         master_model, sol_master = master_problem(model.clone(), u, outcome, clf_type, mfile, F, rho, unc_type, lb,
-                                                       ub, S)
+                                                       ub, S, time_limit = time_limit)
+         
+        if master_model is None: 
+            print('master_model is None -- MP not solved within time limit')
+            break
+            
         print('--> Distance to the factual instance:', value(master_model.OBJ))
         solutions_master_dict[iterations] = {'sol': sol_master, 'obj': value(master_model.OBJ)}
         time_find_max_start = time.time()
