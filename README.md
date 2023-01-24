@@ -5,7 +5,32 @@ RCE is a Python package for calculating robust Counterfactual explanations (CE) 
 You can install the RCE package locally by cloning the repository and running ```pip install .``` within the home directory of the repo. This will allow you to load `rce` in Python; see the example notebooks for specific usage of the functions.
 
 ## How to use RCE 
-See notebooks in the experiments section.
+RCE can generate robust counterfactual for logistic regression, decision trees, random forests, gradient boosting machines, and nerual networks with ReLU activation functions. The predictive models must be trained using the ```sklearn``` library.
+
+```python
+# train the classifier
+clf_type = 'cart'  # supported clf types: ['cart', 'linear', 'rf', 'gbm', 'mlp']
+clf = DecisionTreeClassifier(max_depth=5).fit(X_train, y_train)
+# define the factual instance
+u = pd.DataFrame([X_test.iloc[0, :]])
+# use rce to generate robust counterfactual explanations. rce_sol is the robust counterfactual explanation.
+'''
+  save_path: (str) path where the clf tables will be saved
+  task: (str) taks of the ML model; binary or continuous (only binary is supported at the moment)
+  u: (DataFrame) factual instance
+  F: (list) feature 
+  F_b: (list) binary features
+  F_int: (list) integer features
+  F_coh: (dict) categorical features (one hot encoded)
+  I: (list) immutable features
+  L: (list) 'larger than' features
+  P: (list) positive features
+  rho: (float) dimension the uncertainty set
+  unc_type: (str) shape of the robust CE; supported: 'l2' (ball) or 'linf' (box)
+  iterative: (bool) if true the Robust CE can overlap more leaves otherwise it will be contained fully in one leaf. It must be true for 'mlp'
+'''
+final_model, num_iterations, comp_time, rce_sol, solutions_master = rce.generate(clf, X_train, y_train, save_path, clf_type, task, u, F, F_b, F_int, F_coh, I, L, P, rho,unc_type=unc_type, iterative=True)
+```
 
 ## Citation
 Our software can be cited as:
