@@ -32,17 +32,3 @@ u = pd.DataFrame([X_test.iloc[0, :]])
 '''
 final_model, num_iterations, comp_time, rce_sol, solutions_master = rce.generate(clf, X_train, y_train, save_path, clf_type, task, u, F, F_b, F_int, F_coh, I, L, P, rho,unc_type=unc_type, iterative=True)
 ```
-
-## Citation
-Our software can be cited as:
-````
-  @misc{RCE,
-    author = "Donato Maragno",
-    title = "RCE: Robust Counterfactual Explanations",
-    year = 2023,
-    url = "https://github.com/donato-maragno/robust-CE/"
-  }
-````
-
-## Get in touch!
-Our package is under active development. We welcome any questions or suggestions. Please submit an issue on Github, or reach us at d.maragno@uva.nl.
