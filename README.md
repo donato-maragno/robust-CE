@@ -38,7 +38,7 @@ final_model, num_iterations, comp_time, rce_sol, solutions_master = rce.generate
 ## Citation
 Our software can be cited as:
 ````
-  @misc{https://doi.org/10.48550/arxiv.2301.11113,
+  @misc{Maragno.2023,
   doi = {10.48550/ARXIV.2301.11113},
   
   url = {https://arxiv.org/abs/2301.11113},
@@ -49,9 +49,7 @@ Our software can be cited as:
   
   publisher = {arXiv},
   
-  year = {2023},
-  
-  copyright = {Creative Commons Attribution 4.0 International}
+  year = {2023}
 }
 ````
 
