@@ -3,7 +3,7 @@ RCE is a Python package for calculating robust counterfactual explanations (CE) 
 
 The full methodology is detailed in [our manuscript](https://arxiv.org/pdf/2301.11113v1.pdf) __Finding Regions of Counterfactual Explanations via Robust Optimization__. See the [slides](https://github.com/donato-maragno/robust-CE/blob/main/slides/Finding_Regions_of_Counterfactual_Explanations_via_Robust_Optimization.pdf) for a more visual explanation of our approach. 
 
-![Iterations of the Adversarial Aglorithm used to generate a robust counterfactual explanation](https://github.com/donato-maragno/robust-CE/blob/main/slides/Figures/git.gif)
+![](https://github.com/donato-maragno/robust-CE/blob/main/slides/Figures/git.gif)
 ## How to install RCE
 You can install the RCE package locally by cloning the repository and running ```pip install .``` within the home directory of the repo. This will allow you to load `rce` in Python; see the example notebooks for specific usage of the functions.
 
